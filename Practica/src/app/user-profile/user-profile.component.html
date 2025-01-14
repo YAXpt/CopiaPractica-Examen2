@@ -1,0 +1,29 @@
+<h1>PROFILE</h1>
+<h2>Tu información de usuario</h2>
+<div class="user-profile">
+  <section class="user-info">
+    <h3>User Info</h3>
+    <ul>
+      <li>
+        <strong>Username:</strong> {{ user()?.username }}
+      </li>
+    </ul>
+  </section>
+  <section class="buying-history">
+    <h3>Buying History</h3>
+    <ul>
+      <li>
+        @for(item of items(); track item){
+          <div class="item">
+            <p>{{ item.name }}</p>
+            <p>{{ item.price }}</p>
+          </div>
+        }
+      </li>
+    </ul>
+  </section>
+</div>
+<div>
+  <button>
+    <a [href]="'/area/' + userId">Ir al area de usuarios</a>
+  </button></div>

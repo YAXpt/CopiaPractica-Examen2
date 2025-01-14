@@ -1,0 +1,16 @@
+<h1>REGISTER</h1>
+<p>Registrate para poder iniciar sesion</p>
+
+<form [formGroup]="registerForm" (submit)="onSubmit()">
+
+  <label for="name">Username</label>
+  <input type="text" id="name" required
+    formControlName="username">
+
+  <label for="email">Email</label>
+  <input type="email" id="email" required
+    formControlName="email">
+
+  <button type="submit" [disabled]="!registerForm.valid">Register</button>
+
+</form>

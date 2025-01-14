@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f1f8e9; /* Verde pálido */
+  color: #2e7d32; /* Verde texto principal */
+  margin: 0;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif; /* Fuente llamativa */
+  color: #2f4a2f; /* Verde principal */
+  text-align: center;
+  font-size: 48px; /* Aumentar el tamaño */
+  font-weight: 700; /* Hacerla más gruesa */
+  margin-top: 20px;
+  text-transform: uppercase; /* Hacerlo en mayúsculas para resaltar más */
+  letter-spacing: 2px; /* Espaciado entre letras */
+}
+
+nav {
+  background-color: #388e3c; /* Verde oscuro */
+  padding: 15px 0;
+  margin-top: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  font-size: 18px;
+}
+
+nav ul li a {
+  color: #ffffff; /* Blanco */
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #4caf50; /* Verde principal al pasar el mouse */
+  color: #ffffff; /* Blanco */
+}

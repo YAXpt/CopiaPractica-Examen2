@@ -1,0 +1,28 @@
+<h1>HOME</h1>
+<p>Aqui encontrareis informacion sobre los diferentes tipos de Pikmin que existen.</p>
+<p>Disponemos de algunos productos para comprar, disponibles solamente para suscriptores.</p>
+<p>¡Registrate y no te pierdas lo que esta web ofrece!</p>
+
+<div id="personatges">
+      <h2>Pikmins:</h2>
+      <h4>Los Pikmin son pequeñas criaturas híbridas entre plantas y animales
+         que ayudan a los protagonistas en la serie de videojuegos "Pikmin" de Nintendo.</h4>
+
+  @for(pikmin of pikmins(); track pikmin._id) {
+    <h3>{{ pikmin.name }}</h3>
+    <img [src]="pikmin.image" alt="{{ pikmin.name }}">
+
+  @if(selectedPikmin() === pikmin._id) {
+    <ul>
+      <li>Nombre: {{ pikmin.name }}</li>
+      <li>Tipo: {{ pikmin.type }}</li>
+      <li>Color: {{ pikmin.color }}</li>
+      <li>Descripcion: {{ pikmin.description }}</li>
+      <button (click)="hideInfo()">Ocultar información</button>
+    </ul>
+  }
+  @if(selectedPikmin() !== pikmin._id) {
+  <button (click)="showInfo(pikmin)">Más información</button>
+  }
+}
+</div>

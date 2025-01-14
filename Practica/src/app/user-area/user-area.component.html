@@ -1,0 +1,15 @@
+<h1>¡Bienvenido!</h1>
+<h2>Área para Usuarios Suscritos</h2>
+<p>Gracias por suscribirse a nuestro servicio. Tiene acceso a contenido exclusivo.</p>
+<div id="items">
+  @for(item of items(); track item._id) {
+  <h3>{{ item.name }}</h3>
+  <img [src]="item.image" alt="{{ item.name }}">
+  <button (click)="buyItem(item)">Comprar</button>
+  }
+</div>
+<div>
+  <button>
+    <a [href]="'/user/' + userId">Ir a mi perfil</a>
+  </button>
+  </div>

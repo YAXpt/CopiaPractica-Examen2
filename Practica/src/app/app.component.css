@@ -1,0 +1,45 @@
+body {
+  font-family: 'Verdana', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e0f2e9;
+}
+
+/* Header styles */
+header {
+  background-color: #2e7d32;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+main {
+  padding: 20px;
+}
+
+button {
+  background-color: #388e3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #2e7d32;
+}
+
+footer {
+  background-color: #17381d;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  bottom: 0;
+  width: 100%;
+}

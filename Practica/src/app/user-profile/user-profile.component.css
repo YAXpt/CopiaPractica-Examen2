@@ -1,0 +1,102 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f1f8e9; /* Verde pálido */
+  color: #2e7d32; /* Verde texto principal */
+  margin: 0;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #4caf50; /* Verde principal */
+  text-align: center;
+  font-size: 36px;
+  margin-top: 20px;
+}
+
+h2 {
+  color: #388e3c; /* Verde oscuro */
+  text-align: center;
+  font-size: 28px;
+  margin-top: 10px;
+}
+
+.user-profile {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff; /* Blanco */
+  border: 1px solid #4caf50; /* Verde principal */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.user-profile section {
+  flex: 1 1 45%; /* Se adapta al espacio disponible */
+}
+
+.user-info ul,
+.buying-history ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-info h3,
+.buying-history h3 {
+  color: #4caf50; /* Verde principal */
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.user-info li,
+.buying-history li {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.user-info strong {
+  color: #388e3c; /* Verde oscuro */
+}
+
+.buying-history .item {
+  padding: 10px;
+  background-color: #f9fbe7; /* Fondo verde claro */
+  border: 1px solid #4caf50; /* Borde verde */
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.buying-history .item p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #2e7d32; /* Verde texto principal */
+}
+
+div > button {
+  background-color: #81c784; /* Verde claro */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  text-align: center;
+}
+
+div > button a {
+  color: #2e7d32; /* Verde texto principal */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+div > button:hover {
+  background-color: #4caf50; /* Verde principal */
+}
+
+div > button a:hover {
+  color: #ffffff; /* Blanco */
+}
