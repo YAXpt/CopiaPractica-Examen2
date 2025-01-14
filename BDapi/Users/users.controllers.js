@@ -12,13 +12,13 @@ export async function handleGetUser(req, res) { //obtener usuario por id, a trav
 }
 
 export async function handleLogin(req, res) {
-    const { email, name } = req.body;
+    const { email, username } = req.body;
     const foundUser = await userModel.findOne({ email });
   
     if (!foundUser) {
       return res.status(404).json({ message: "User not found." });
     }
-    if (foundUser.name !== name) {
+    if (foundUser.username !== username) {
       return res.status(401).json({ message: "Invalid credentials. Name does not match." });
     }
     res.status(200).json(foundUser);
