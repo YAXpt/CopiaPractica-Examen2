@@ -9,17 +9,16 @@ import { Events } from '../models/Events';
 export class EventsService {
 
   private httpClient = inject(HttpClient);
-d
+
   private baseURL = 'http://localhost:3000';
 
   constructor() { }
 
-  getItems() {
-    return this.httpClient.get<Pikmins>(`${this.baseURL}/pikmins`);
+  getNumberEvents() {
+    return this.httpClient.get<Events>(`${this.baseURL}/estadistics/number`);
   }
 
-  getItem(id: number) {
-    return this.httpClient.get<Pikmin>(`${this.baseURL}/pikmins/${id}`);
+  getLastEvents() {
+    return this.httpClient.get<Events>(`${this.baseURL}/estadistics/last`);
   }
-
 }

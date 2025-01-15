@@ -1,7 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Estadistic } from '../models/Estadistic';
-import { Estadistics } from '../models/Estadistics';
-import { EstadisticService } from '../services/estadistic.service';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { Event } from '../models/Event';
+import { Events } from '../models/Events';
+import { EventsService } from '../services/events.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -13,18 +13,15 @@ import { RouterModule } from '@angular/router';
 })
 export class LastEventsComponent {
 
-  private estadisticService = inject(EstadisticService);
+  private eventsService = inject(EventsService);
 
-  estadistics = signal<Estadistic[]>([]);
+  events = signal<Event[]>([]);
 
   ngOnInit(): void {
-    const baseUrl = 'http://localhost:3000';
 
-    this.estadisticService.getItems().subscribe((response: Estadistics) => {
-      this.estadistics.set(response.results);
+    this.eventsService.getLastEvents().subscribe((response: Events) => {
+      this.events.set(response.results);
     });
   }
 
 }
-
-
