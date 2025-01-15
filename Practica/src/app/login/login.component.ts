@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { EventsService } from '../services/events.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -16,13 +17,24 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginComponent {
 
-  private userService = inject(UserService);
+    private eventsService = inject(EventsService);
+    private userService = inject(UserService);
   private router = inject(Router);
 
   loginForm = new FormGroup({
     username: new FormControl('', { validators: [Validators.required] }),
     email: new FormControl('', { validators: [Validators.required, Validators.email] })
   });
+
+  ngOnInit(): void {
+    const event = {
+      llocEvent: 'Login',
+      tipusEvent: 'visita'
+    };
+
+    this.eventsService.createEvent(event).subscribe();
+  }
+
 
   onSubmit() {
     if (this.loginForm.valid) {

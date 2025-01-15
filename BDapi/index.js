@@ -2,6 +2,7 @@ import express from 'express';
 import { usersRouter } from './Users/users.routes.js';
 import { productsRouter } from './Products/items.routes.js';
 import { pikminsRouter } from './Pikmins/pikmins.routes.js';
+import { estadisticsRouter } from './Estadistics/estadistics.routes.js';
 // import populateDatabaseP from './Pikmins/pikmins.data.js';  // Importamos la función de carga de datos
 // import populateDatabaseI from './Products/items.data.js';  // Importamos la función de carga de datos
 import bodyParser from 'body-parser';
@@ -23,6 +24,7 @@ app.use('/Uploads/pikminImages', express.static(path.resolve('Uploads', 'pikminI
 app.use('/users', usersRouter); // /users
 app.use('/items', productsRouter); // /items
 app.use('/pikmins', pikminsRouter); // /pikmins
+app.use('/estadistics', estadisticsRouter); // /estadistics
 
 // async function loadInitialData() {
 //     try {

@@ -33,8 +33,6 @@ export class HomeComponent {
     this.eventsService.createEvent(event).subscribe();
 
 
-
-
     const baseUrl = 'http://localhost:3000';
 
     this.pikminService.getItems().subscribe((response: Pikmins) => {

@@ -22,8 +22,9 @@ export class EventsService {
     return this.httpClient.get<Events>(`${this.baseURL}/estadistics/last`);
   }
 
-  createEvent(user: { username: string, email: string }) {
-    return this.httpClient.post(`${this.baseURL}/users`, user);
+  //añadir sessionId
+  createEvent(event: { llocEvent: string, tipusEvent: string }) {
+    return this.httpClient.post(`${this.baseURL}/estadistics`, event);
   }
 
 }

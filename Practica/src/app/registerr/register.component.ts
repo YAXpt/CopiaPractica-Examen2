@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { EventsService } from '../services/events.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -17,6 +18,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 export class RegisterComponent {
   private userService = inject(UserService);
+  private eventsService = inject(EventsService);
 
   registerForm = new FormGroup({
     username: new FormControl('', { validators: [Validators.required] }),
@@ -24,6 +26,13 @@ export class RegisterComponent {
   });
 
   onSubmit() {
+
+    const event = {
+      llocEvent: 'Register',
+      tipusEvent: 'click'
+    };
+    this.eventsService.createEvent(event).subscribe();
+
     console.log(this.registerForm.value);
     if (this.registerForm.valid) {
       const user = {
@@ -33,7 +42,7 @@ export class RegisterComponent {
       this.userService.createUser(user).subscribe({
         next: (response) => alert('Nuevo usuario registrado, inicie sesión desde "Login"'),
         error: (err) => alert('Error al registrar usuario'),
-    });
+      });
     } else {
       alert('Algun dato del formulario es incorrecto');
     }
