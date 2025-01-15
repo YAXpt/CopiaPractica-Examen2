@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Pikmin } from '../models/Pikmin';
 import { Pikmins } from '../models/Pikmins';
 import { PikminService } from '../services/pikmin.service';
+import { EventsService } from '../services/events.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -15,14 +16,25 @@ import { RouterModule } from '@angular/router';
 })
 
 export class HomeComponent {
-  
-private pikminService = inject(PikminService);
 
+  private pikminService = inject(PikminService);
+  private eventsService = inject(EventsService);
   pikmins = signal<Pikmin[]>([]);
 
   selectedPikmin = signal<string | null>(null);
 
   ngOnInit(): void {
+
+    const event = {
+      llocEvent: 'Home',
+      tipusEvent: 'visita'
+    };
+
+    this.eventsService.createEvent(event).subscribe();
+
+
+
+
     const baseUrl = 'http://localhost:3000';
 
     this.pikminService.getItems().subscribe((response: Pikmins) => {

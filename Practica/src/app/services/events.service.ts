@@ -21,4 +21,9 @@ export class EventsService {
   getLastEvents() {
     return this.httpClient.get<Events>(`${this.baseURL}/estadistics/last`);
   }
+
+  createEvent(user: { username: string, email: string }) {
+    return this.httpClient.post(`${this.baseURL}/users`, user);
+  }
+
 }

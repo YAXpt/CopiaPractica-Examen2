@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
+//import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,10 @@ import { HeaderComponent } from './header/header.component';
 })
 export class AppComponent {
   title = 'Practica';
+  //sessionID: string;
+
+  // constructor() {
+  //   this.sessionID = uuidv4();
+  // }
+
 }
