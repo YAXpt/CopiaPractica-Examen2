@@ -1,1 +1,13 @@
-<p>last-events works!</p>
+<h1>Last Events</h1>
+
+<div id="personatges">
+  
+  @for(event of events(); track event._id) {
+    <ul>
+      <li>Lloc event: {{ event.llocEvent }}</li>
+      <li>Tipus event: {{ event.tipusEvent }}</li>
+      <li>Data event: {{ event._createdAt }}</li>
+    </ul>
+
+  }
+</div>
