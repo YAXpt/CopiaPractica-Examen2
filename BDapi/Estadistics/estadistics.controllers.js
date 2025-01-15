@@ -6,7 +6,7 @@ import { estadisticsModel } from './estadistics.model.js';
 
 export async function createEstadistics(req, res) { //POST 
     const { sessionId, userId, llocEvent, tipusEvent } = req.body;
-    
+
     const newEstadistics = new estadisticsModel({
         sessionId: sessionId,
         userId: userId,
@@ -18,23 +18,46 @@ export async function createEstadistics(req, res) { //POST
     res.json(newEstadistics);
 }
 
-
-
-export async function handleEstadistics(req, res) { //GET
+// pagina especial para ver el numero de clics y visitas y poder aplicar filtros 
+// enseña los de su sesion o los de todos en total ?
+export async function handleNumberOfEstadistics(req, res) { //GET
     const { sessionId } = req.body;
-     const estadistics = await estadisticsModel.find({sessionId});
-        res.json({ results: estadistics });
+    const initialEstadistics = await estadisticsModel.find({ sessionId });
 
-    res.status(200).json(foundSession);
-}
+    const { llocEvent, tipusEvent, dataInici } = req.query;
 
-export async function handleLastEstadistics(req, res) { //GET
-    const { sessionId } = req.body;
-    const foundSession = await estadisticsModel.findOne({sessionId});
-    if (!foundSession) {
-        return res.status(404).json({ message: "This session hasn't been created" });
+    let filter = { sessionId };
+
+    if (llocEvent) {
+        filter.llocEvent = llocEvent;
+    }
+    if (tipusEvent) {
+        filter.tipusEvent = tipusEvent;
+    }
+    if (dataInici) {
+        filter.timestamp = { $gte: new Date(dataInici) };
     }
 
+    const estadistics = initialEstadistics.filter(filter);
 
-    
+    const clickCount = estadistics.filter(e => e.tipusEvent === 'click').length;
+    const visitaCount = estadistics.filter(e => e.tipusEvent === 'visita').length;
+
+    res.json({
+        clickCount: clickCount,
+        visitaCount: visitaCount
+    });
+}
+
+
+// una pagina especial que permita ver las ultimas estadisticas (de la sesion o de todos?)
+export async function handleLastEstadistics(req, res) { //GET
+    const { sessionId } = req.body;
+
+    const lastFiveEstadistics = await estadisticsModel.find({ sessionId })
+        .sort({ timestamp: -1 })
+        .limit(5);
+
+    res.json({ results: lastFiveEstadistics });
+
 }
