@@ -1,7 +1,6 @@
 /* Cada evento es una nueva estadistica, cada estadistica/evento viene de un user y de una session,
  no siempre el mismo user tendrá una misma session, cada evento tiene unas caracteristicas */
 
-
 import { estadisticsModel } from './estadistics.model.js';
 
 export async function createEstadistics(req, res) { //POST 
@@ -22,8 +21,6 @@ export async function createEstadistics(req, res) { //POST
 // enseña los de su sesion o los de todos en total ?
 export async function handleNumberOfEstadistics(req, res) { //GET
     const { sessionId } = req.body;
-    const initialEstadistics = await estadisticsModel.find({ sessionId });
-
     const { llocEvent, tipusEvent, dataInici } = req.query;
 
     let filter = { sessionId };
@@ -38,7 +35,7 @@ export async function handleNumberOfEstadistics(req, res) { //GET
         filter.timestamp = { $gte: new Date(dataInici) };
     }
 
-    const estadistics = initialEstadistics.filter(filter);
+    const estadistics = await estadisticsModel.find(filter);
 
     const clickCount = estadistics.filter(e => e.tipusEvent === 'click').length;
     const visitaCount = estadistics.filter(e => e.tipusEvent === 'visita').length;
@@ -48,7 +45,6 @@ export async function handleNumberOfEstadistics(req, res) { //GET
         visitaCount: visitaCount
     });
 }
-
 
 // una pagina especial que permita ver las ultimas estadisticas (de la sesion o de todos?)
 export async function handleLastEstadistics(req, res) { //GET

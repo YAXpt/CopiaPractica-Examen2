@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './registerr/register.component';
 import { UserAreaComponent } from './user-area/user-area.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { LastEventsComponent } from './last-events/last-events.component';
+import { EventsComponent } from './events/events.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +32,15 @@ export const routes: Routes = [
     path: 'user/:id',
     component: UserProfileComponent,
     title: 'User Profile'
+  },
+  {
+    path: 'last-events',
+    component: LastEventsComponent,
+    title: 'Last Events'
+  },
+  {
+    path: 'events',
+    component: EventsComponent,
+    title: 'Events'
   }
 ];
