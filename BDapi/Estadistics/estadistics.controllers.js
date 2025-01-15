@@ -51,7 +51,7 @@ export async function handleLastEstadistics(req, res) { //GET
     //const { sessionId } = req.body;
 
 
-    const lastFiveEstadistics = await estadisticsModel
+    const lastFiveEstadistics = await estadisticsModel.find()
         .sort({ timestamp: -1 })
         .limit(5);
 
