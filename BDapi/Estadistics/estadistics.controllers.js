@@ -20,10 +20,9 @@ export async function createEstadistics(req, res) { //POST
 // pagina especial para ver el numero de clics y visitas y poder aplicar filtros 
 // enseña los de su sesion o los de todos en total ?
 export async function handleNumberOfEstadistics(req, res) { //GET
-    const { sessionId } = req.body;
     const { llocEvent, tipusEvent, dataInici } = req.query;
 
-    let filter = { sessionId };
+    let filter = {};
 
     if (llocEvent) {
         filter.llocEvent = llocEvent;
@@ -41,17 +40,16 @@ export async function handleNumberOfEstadistics(req, res) { //GET
     const visitaCount = estadistics.filter(e => e.tipusEvent === 'visita').length;
 
     res.json({
-        clickCount: clickCount,
-        visitaCount: visitaCount
+        clickCount,
+        visitaCount
     });
 }
 
 // una pagina especial que permita ver las ultimas estadisticas (de la sesion o de todos?)
 export async function handleLastEstadistics(req, res) { //GET
-    const { sessionId } = req.body;
 
 
-    const lastFiveEstadistics = await estadisticsModel.find({ sessionId })
+    const lastFiveEstadistics = await estadisticsModel.find()
         .sort({ timestamp: -1 })
         .limit(5);
 

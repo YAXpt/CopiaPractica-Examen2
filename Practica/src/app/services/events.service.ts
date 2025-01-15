@@ -15,7 +15,7 @@ export class EventsService {
   constructor() { }
 
   getNumberEvents() {
-    return this.httpClient.get<Events>(`${this.baseURL}/estadistics/number`);
+    return this.httpClient.get(`${this.baseURL}/estadistics/number`);
   }
 
   getLastEvents() {
