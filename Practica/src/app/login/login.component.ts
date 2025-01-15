@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { EventsService } from '../services/events.service';
+import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -17,8 +18,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginComponent {
 
-    private eventsService = inject(EventsService);
-    private userService = inject(UserService);
+  private sessionService = inject(SessionService);
+  private eventsService = inject(EventsService);
+  private userService = inject(UserService);
   private router = inject(Router);
 
   loginForm = new FormGroup({
@@ -27,7 +29,11 @@ export class LoginComponent {
   });
 
   ngOnInit(): void {
+
+    const sessionId = this.sessionService.getSessionId();
+
     const event = {
+      sessionId: sessionId,
       llocEvent: 'Login',
       tipusEvent: 'visita'
     };

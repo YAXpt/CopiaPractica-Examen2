@@ -23,7 +23,7 @@ export class EventsService {
   }
 
   //añadir sessionId
-  createEvent(event: { llocEvent: string, tipusEvent: string }) {
+  createEvent(event: { sessionId: string, llocEvent: string, tipusEvent: string }) {
     return this.httpClient.post(`${this.baseURL}/estadistics`, event);
   }
 

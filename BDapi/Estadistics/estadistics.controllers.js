@@ -7,7 +7,7 @@ export async function createEstadistics(req, res) { //POST
     const { sessionId, userId, llocEvent, tipusEvent } = req.body;
 
     const newEstadistics = new estadisticsModel({
-        sessionId: sessionId || null,
+        sessionId: sessionId,
         userId: userId || null,
         llocEvent: llocEvent,
         tipusEvent: tipusEvent
@@ -48,16 +48,12 @@ export async function handleNumberOfEstadistics(req, res) { //GET
 
 // una pagina especial que permita ver las ultimas estadisticas (de la sesion o de todos?)
 export async function handleLastEstadistics(req, res) { //GET
-    //const { sessionId } = req.body;
+    const { sessionId } = req.body;
 
 
-    const lastFiveEstadistics = await estadisticsModel.find()
+    const lastFiveEstadistics = await estadisticsModel.find({ sessionId })
         .sort({ timestamp: -1 })
         .limit(5);
-
-    // const lastFiveEstadistics = await estadisticsModel.find({ sessionId })
-    //     .sort({ timestamp: -1 })
-    //     .limit(5);
 
     res.json({ results: lastFiveEstadistics });
 

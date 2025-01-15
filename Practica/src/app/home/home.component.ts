@@ -3,6 +3,7 @@ import { Pikmin } from '../models/Pikmin';
 import { Pikmins } from '../models/Pikmins';
 import { PikminService } from '../services/pikmin.service';
 import { EventsService } from '../services/events.service';
+import { SessionService } from '../services/session.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -19,13 +20,18 @@ export class HomeComponent {
 
   private pikminService = inject(PikminService);
   private eventsService = inject(EventsService);
+  private sessionService = inject(SessionService);
+
   pikmins = signal<Pikmin[]>([]);
 
   selectedPikmin = signal<string | null>(null);
 
   ngOnInit(): void {
 
+    const sessionId = this.sessionService.getSessionId();
+
     const event = {
+      sessionId: sessionId,
       llocEvent: 'Home',
       tipusEvent: 'visita'
     };

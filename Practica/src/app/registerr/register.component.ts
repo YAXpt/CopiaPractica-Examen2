@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { EventsService } from '../services/events.service';
+import { SessionService } from '../services/session.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -19,6 +20,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class RegisterComponent {
   private userService = inject(UserService);
   private eventsService = inject(EventsService);
+    private sessionService = inject(SessionService);
+
 
   registerForm = new FormGroup({
     username: new FormControl('', { validators: [Validators.required] }),
@@ -26,8 +29,10 @@ export class RegisterComponent {
   });
 
   onSubmit() {
+    const sessionId = this.sessionService.getSessionId();
 
     const event = {
+      sessionId: sessionId,
       llocEvent: 'Register',
       tipusEvent: 'click'
     };

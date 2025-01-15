@@ -10,10 +10,12 @@ import { SessionService } from './services/session.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
   title = 'Practica';
-}
 
   constructor(private sessionService: SessionService) {
-
+    console.log('Session ID:', this.sessionService.getSessionId());
+    console.log('User ID:', this.sessionService.getUserId());
   }
+}
